@@ -124,26 +124,8 @@ Console.WriteLine($"строка с наименьшей суммой элеме
         18 20
         15 18
 */
+/*
 
-int [,] CreateMas2D(int n)
-{
-    int [,] Mas2D = new int[n,n];
-    for (int i=0; i<n; i++)
-        for(int j=0; j<n; j++)
-            Mas2D[i,j] =  new Random().Next(1,10);
-    return Mas2D;        
-}
-
-void PrintMas2D(int[,] mas)
-{
-    int n = mas.GetLength(0);
-    for(int i=0; i<n; i++)
-    {
-        for(int j=0; j<n; j++)
-            Console.Write(mas[i,j] + " ");
-        Console.WriteLine();    
-    }
-}
 
 int [,] ProductMatrix(int[,]mas1, int[,] mas2)
 {
@@ -173,6 +155,57 @@ Console.WriteLine();
 Console.WriteLine("Матрица C = A * B:");
 int [,] MasC = ProductMatrix(MasA, MasB);
 PrintMas2D(MasC);
+*/
+
+/*
+Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+    Массив размером 2 x 2 x 2
+        66(0,0,0) 25(0,1,0)
+        34(1,0,0) 41(1,1,0)
+        27(0,0,1) 90(0,1,1)
+        26(1,0,1) 55(1,1,1)
+*/
 
 
+int [ , , ] CreateMas3D()
+{
+    int x = new Random().Next(3,5);
+    int y = new Random().Next(2,5);
+    int z = new Random().Next(2,4);
+    int [ , ,] Mas3D = new int[x,y,z];
+    List<int> list = new List<int>();
+    for (int i=0; i<x; i++)
+        for(int j=0; j<y; j++)
+            for(int k=0; k<z; k++)
+                {
+                    int Num = new Random().Next(10,100);
+                    while(list.Contains(Num))
+                    {
+                        Num = new Random().Next(10,100);
+                    }
+                    list.Add(Num);
+                    Mas3D[i,j,k] = Num;
+                }
+    return Mas3D;        
+}
+
+void PrintMas3D(int[,,] mas)
+{
+    int n = mas.GetLength(0);
+    int m = mas.GetLength(1);
+    int t  = mas.GetLength(2);
+    for (int i = 0; i < n; i++) 
+    {
+        for (int j = 0; j < m; j++) 
+        {
+            for (int k = 0; k < t; k++)
+                Console.Write($"{mas[i,j,k]} ({i},{j},{k})  " );
+            Console.WriteLine();
+        }
+        Console.WriteLine();
+    }
+}
+
+int [,, ] Mas3D = CreateMas3D();
+PrintMas3D(Mas3D);
 
