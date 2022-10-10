@@ -166,7 +166,7 @@ PrintMas2D(MasC);
         26(1,0,1) 55(1,1,1)
 */
 
-
+/*
 int [ , , ] CreateMas3D()
 {
     int x = new Random().Next(3,5);
@@ -208,4 +208,62 @@ void PrintMas3D(int[,,] mas)
 
 int [,, ] Mas3D = CreateMas3D();
 PrintMas3D(Mas3D);
+*/
+
+
+/*
+Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
+    Например, на выходе получается вот такой массив:
+        01 02 03 04
+        12 13 14 05
+        11 16 15 06
+        10 09 08 07
+*/
+int[,] Spiral()
+{
+    int n = new Random().Next(4,9);
+	int [,]a = new int[n,n];
+
+	int v = 1;
+	int k = (n % 2 == 1)? n / 2 + 1: n / 2;
+	for (int count = 1; count <= k; count++)
+	{
+		int i = count - 1;
+        int j = count - 1;
+		for (; j <= n - count; j++)
+				a[i, j] = v++;
+
+		j = n - count;
+		for (i = count; i <= n - count; i++)
+			a[i, j] = v++;
+
+		i = n - count;
+		for ( j = n - count - 1; j >= count - 1; j--)
+			a[i, j] = v++;
+
+		j = count - 1;
+		for (i = n - count - 1; i >= count; i--)
+			a[i, j] = v++;
+	}
+    return a;
+}
+
+void PrintMas(int[,] mas)
+{
+    int n = mas.GetLength(0);
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<n; j++)
+            if(mas[i,j]<10)
+                Console.Write($"0{mas[i,j]} ");
+            else
+                Console.Write($"{mas[i,j]} ");
+        Console.WriteLine();    
+    }
+}
+
+
+int [,] sp = Spiral();
+PrintMas(sp);
+
 
