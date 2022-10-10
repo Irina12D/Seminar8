@@ -67,6 +67,7 @@ PrintMas2D(Mas2D);
         5 2 6 7
     Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 */
+/*
 int [,] CreateMas2D()
 {
     int n = new Random().Next(5,7);
@@ -112,5 +113,66 @@ int NumStrMinSum(int[,] mas)
 int [,] Mas2D = CreateMas2D();
 PrintMas2D(Mas2D);
 Console.WriteLine($"строка с наименьшей суммой элементов - {NumStrMinSum(Mas2D)+1} строка");
+*/
+
+/*
+Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+    Например, даны 2 матрицы:
+        2 4 | 3 4
+        3 2 | 3 3
+    Результирующая матрица будет:
+        18 20
+        15 18
+*/
+
+int [,] CreateMas2D(int n)
+{
+    int [,] Mas2D = new int[n,n];
+    for (int i=0; i<n; i++)
+        for(int j=0; j<n; j++)
+            Mas2D[i,j] =  new Random().Next(1,10);
+    return Mas2D;        
+}
+
+void PrintMas2D(int[,] mas)
+{
+    int n = mas.GetLength(0);
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<n; j++)
+            Console.Write(mas[i,j] + " ");
+        Console.WriteLine();    
+    }
+}
+
+int [,] ProductMatrix(int[,]mas1, int[,] mas2)
+{
+    int n = mas1.GetLength(0);
+    int[,]PrMas = new int[n,n]; 
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<n; j++)
+            {
+                PrMas[i,j] = 0;
+                for(int k=0; k<n; k++)
+                    PrMas[i,j] += mas1[i,k]*mas2[k,j];
+            }
+    }
+    return PrMas;
+}
+
+int n = new Random().Next(2,5);
+int [,] MasA = CreateMas2D(n);
+int [,] MasB = CreateMas2D(n);
+Console.WriteLine("Матрица А:");
+PrintMas2D(MasA);
+Console.WriteLine();
+Console.WriteLine("Матрица B:");
+PrintMas2D(MasB);
+Console.WriteLine();
+Console.WriteLine("Матрица C = A * B:");
+int [,] MasC = ProductMatrix(MasA, MasB);
+PrintMas2D(MasC);
+
 
 
